@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chukim <chukim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: chukim <chukim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 09:32:40 by chukim            #+#    #+#             */
-/*   Updated: 2023/07/20 21:01:18 by chukim           ###   ########.fr       */
+/*   Updated: 2023/07/21 06:43:30 by chukim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,18 +155,7 @@ void Btc::readInput(std::string inputPath)
 			continue;
 		}
 		vectorLine = splitString(line, '|');
-		date = splitString(line, '-');
-		if (vectorLine[1].length() == 0 || vectorLine.size() < 2 || date.size() != 3)
-		{
-			std::cout << "Error: bad input => " << vectorLine[0] << std::endl;
-			continue;
-		}
-		if (string_to_double(date[1]) > 12 || string_to_double(date[1]) < 1)
-		{
-			std::cout << "Error: bad input => " << vectorLine[0] << std::endl;
-			continue;
-		}
-		else if (string_to_double(date[2]) > 31 || string_to_double(date[2]) < 1)
+		if (vectorLine[1].length() == 0 || vectorLine.size() < 2)
 		{
 			std::cout << "Error: bad input => " << vectorLine[0] << std::endl;
 			continue;
