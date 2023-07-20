@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chukim <chukim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: chukim <chukim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 10:01:53 by chukim            #+#    #+#             */
-/*   Updated: 2023/07/20 08:38:09 by chukim           ###   ########.fr       */
+/*   Updated: 2023/07/20 21:01:48 by chukim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
 #include <iostream>
+#include <cmath>
 
 RPN::RPN()
 {
@@ -81,7 +82,7 @@ void RPN::calculate(std::string input)
 		}
 		else
 		{
-			std::cerr << "Error" << std::endl;
+			std::cout << "Error" << std::endl;
 			return;
 		}
 	}
@@ -92,13 +93,13 @@ void RPN::calculate(std::string input)
 		_numbers.pop();
 		if (isnan(result) || isinf(result))
 		{
-			std::cout << "Error: result is not a number.";
+			std::cout << "Error: result is not a number." << std::endl;
 			return ;
 		}
 		std::cout << result << std::endl;
 	}
 	else
 	{
-		std::cerr << "Error" << std::endl;
+		std::cout << "Error" << std::endl;
 	}
 }

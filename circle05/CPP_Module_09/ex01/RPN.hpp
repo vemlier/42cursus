@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chukim <chukim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: chukim <chukim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 10:01:59 by chukim            #+#    #+#             */
-/*   Updated: 2023/07/20 08:38:03 by chukim           ###   ########.fr       */
+/*   Updated: 2023/07/20 20:20:17 by chukim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RPN_HPP
 # define RPN_HPP
 
+#include <iostream>
 #include <stack>
 
 class RPN

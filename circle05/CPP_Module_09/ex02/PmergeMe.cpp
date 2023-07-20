@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chukim <chukim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: chukim <chukim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 10:02:14 by chukim            #+#    #+#             */
-/*   Updated: 2023/07/20 13:23:52 by chukim           ###   ########.fr       */
+/*   Updated: 2023/07/20 21:00:12 by chukim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ PmergeMe::PmergeMe(int ac, char* av[])
 		int value = atoi(av[i]);
 		if (value <= 0)
 		{
-			std::cerr << "Error" << std::endl;
+			std::cout << "Error" << std::endl;
 			exit(1);
 		}
 		_dequeUnsorted.push_back(value);
@@ -137,18 +137,21 @@ void PmergeMe::mergeInsertSortList()
 		if ((*it).first < (*it).second)
 			std::swap((*it).first, (*it).second);
 	}
-
-	for (std::list<std::pair<int, int> >::iterator it = std::next(_listPairs.begin()); it != _listPairs.end(); ++it)
+	std::list<std::pair<int, int> >::iterator it2 = _listPairs.begin();
+	++it2;
+	for (std::list<std::pair<int, int> >::iterator it = it2; it != _listPairs.end(); ++it)
 	{
 		std::list<std::pair<int, int> >::iterator actual = it;
-		std::list<std::pair<int, int> >::iterator prev = std::prev(it);
+		std::list<std::pair<int, int> >::iterator prev = it;
+		--prev;
 		while ((*actual).first < (*prev).first)
 		{
 			std::swap(*actual, *prev);
 			if (prev != _listPairs.begin())
 			{
 				actual = prev;
-				prev = std::prev(actual);
+				prev = actual;
+				--prev;
 			}
 		}
 	}

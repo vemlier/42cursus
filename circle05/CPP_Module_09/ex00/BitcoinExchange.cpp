@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chukim <chukim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: chukim <chukim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 09:32:40 by chukim            #+#    #+#             */
-/*   Updated: 2023/07/20 07:50:43 by chukim           ###   ########.fr       */
+/*   Updated: 2023/07/20 21:01:18 by chukim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,14 @@ static std::string& trim(std::string& s)
 	return ltrim(rtrim(s));
 }
 
+static double string_to_double(const std::string& str)
+{
+	double result;
+	std::stringstream ss(str);
+	ss >> result;
+	return result;
+}
+
 Btc::Btc()
 {
 	int i = 0;
@@ -58,19 +66,19 @@ Btc::Btc()
 		size_t pos = line.find(',');
 		if (pos == std::string::npos)
 		{
-			std::cerr << "Error : Invalid Paramter" << std::endl;
+			std::cout << "Error : Invalid Paramter" << std::endl;
 			continue;
 		}
 		std::string date = line.substr(0, pos);
 		double value;
 		try
 		{
-			value = std::stod(line.substr(pos + 1));
+			value = string_to_double(line.substr(pos + 1));
 		}
 		catch (std::exception &e)
 		{
 			(void)e;
-			std::cerr << "Error: could not parse value" << std::endl;
+			std::cout << "Error: could not parse value" << std::endl;
 			continue;
 		}
 		setData(date, value);
@@ -130,7 +138,7 @@ void Btc::readInput(std::string inputPath)
 {
 	int i = 0;
 	std::ifstream file2;
-	file2.open(inputPath);
+	file2.open(inputPath.c_str());
 	if (!file2.is_open())
 	{
 		_readFlag = -1;
@@ -138,6 +146,7 @@ void Btc::readInput(std::string inputPath)
 	}
 	std::string line;
 	std::vector<std::string> vectorLine;
+	std::vector<std::string> date;
 	while(std::getline(file2, line))
 	{
 		if (i == 0)
@@ -146,7 +155,18 @@ void Btc::readInput(std::string inputPath)
 			continue;
 		}
 		vectorLine = splitString(line, '|');
-		if (vectorLine[1].length() == 0 || vectorLine.size() < 2)
+		date = splitString(line, '-');
+		if (vectorLine[1].length() == 0 || vectorLine.size() < 2 || date.size() != 3)
+		{
+			std::cout << "Error: bad input => " << vectorLine[0] << std::endl;
+			continue;
+		}
+		if (string_to_double(date[1]) > 12 || string_to_double(date[1]) < 1)
+		{
+			std::cout << "Error: bad input => " << vectorLine[0] << std::endl;
+			continue;
+		}
+		else if (string_to_double(date[2]) > 31 || string_to_double(date[2]) < 1)
 		{
 			std::cout << "Error: bad input => " << vectorLine[0] << std::endl;
 			continue;
@@ -157,12 +177,12 @@ void Btc::readInput(std::string inputPath)
 			std::pair<std::string, float> p = *(--it);
 			try
 			{
-				if (std::stod(vectorLine[1]) > 1000)
+				if (string_to_double(vectorLine[1]) > 1000)
 					std::cout << "Error: too large a number." << std::endl;
-				else if (std::stod(vectorLine[1]) < 0)
+				else if (string_to_double(vectorLine[1]) < 0)
 					std::cout << "Error: not a positive number." << std::endl;
 				else
-					std::cout << vectorLine[0] << " => " << vectorLine[1] << " = " << std::stod(vectorLine[1]) * p.second << std::endl;
+					std::cout << vectorLine[0] << " => " << vectorLine[1] << " = " << string_to_double(vectorLine[1]) * p.second << std::endl;
 
 			}
 			catch (const std::exception &e)
