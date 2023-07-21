@@ -6,15 +6,16 @@
 /*   By: chukim <chukim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 09:32:40 by chukim            #+#    #+#             */
-/*   Updated: 2023/07/21 12:42:00 by chukim           ###   ########.fr       */
+/*   Updated: 2023/07/22 06:43:47 by chukim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "BitcoinExchange.hpp"
 
-#include <iostream>
 #include <fstream>
 #include <sstream>
+#include <ctime>
 
 const char* WHITESPACE = " \t\n\r";
 
@@ -154,7 +155,7 @@ void Btc::readInput(std::string inputPath)
 		}
 		vectorLine = splitString(line, '|');
 		std::tm dateStruct = {};
-		if (strptime(vectorLine[0].c_str(), "%Y-%m-%d", &dateStruct) == nullptr)
+		if (strptime(vectorLine[0].c_str(), "%Y-%m-%d", &dateStruct) == NULL)
 		{
 			std::cout << "Error: bad input => " << vectorLine[0] << std::endl;
 			continue;
