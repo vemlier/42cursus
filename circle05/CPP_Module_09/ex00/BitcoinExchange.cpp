@@ -6,7 +6,7 @@
 /*   By: chukim <chukim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 09:32:40 by chukim            #+#    #+#             */
-/*   Updated: 2023/07/21 09:55:04 by chukim           ###   ########.fr       */
+/*   Updated: 2023/07/21 12:22:47 by chukim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,10 +164,14 @@ void Btc::readInput(std::string inputPath)
 			std::cout << "Error: bad input => " << vectorLine[0] << std::endl;
 			continue;
 		}
-		std::map<std::string, float>::iterator it = _data.lower_bound(trim(vectorLine[0]));
+		std::map<std::string, float>::iterator it = _data.upper_bound(trim(vectorLine[0]));
 		if (it != _data.end())
 		{
-			std::pair<std::string, float> p = *(it);
+			std::pair<std::string, float> p;
+			if (it->first == _data.begin()->first)
+				p = *(it);
+			else
+				p = *(--it);
 			try
 			{
 				if (string_to_double(vectorLine[1]) > 1000)
