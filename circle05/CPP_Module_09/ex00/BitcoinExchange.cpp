@@ -6,7 +6,7 @@
 /*   By: chukim <chukim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 09:32:40 by chukim            #+#    #+#             */
-/*   Updated: 2023/07/21 06:43:30 by chukim           ###   ########.fr       */
+/*   Updated: 2023/07/21 09:55:04 by chukim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <cctype>
 
 const char* WHITESPACE = " \t\n\r";
 
@@ -146,7 +145,6 @@ void Btc::readInput(std::string inputPath)
 	}
 	std::string line;
 	std::vector<std::string> vectorLine;
-	std::vector<std::string> date;
 	while(std::getline(file2, line))
 	{
 		if (i == 0)
@@ -155,15 +153,21 @@ void Btc::readInput(std::string inputPath)
 			continue;
 		}
 		vectorLine = splitString(line, '|');
+		std::tm dateStruct = {};
+		if (strptime(vectorLine[0].c_str(), "%Y-%m-%d", &dateStruct) == nullptr)
+		{
+			std::cout << "Error: bad input => " << vectorLine[0] << std::endl;
+			continue;
+		}
 		if (vectorLine[1].length() == 0 || vectorLine.size() < 2)
 		{
 			std::cout << "Error: bad input => " << vectorLine[0] << std::endl;
 			continue;
 		}
-		std::map<std::string, float>::iterator it = _data.upper_bound(trim(vectorLine[0]));
+		std::map<std::string, float>::iterator it = _data.lower_bound(trim(vectorLine[0]));
 		if (it != _data.end())
 		{
-			std::pair<std::string, float> p = *(--it);
+			std::pair<std::string, float> p = *(it);
 			try
 			{
 				if (string_to_double(vectorLine[1]) > 1000)
@@ -171,7 +175,7 @@ void Btc::readInput(std::string inputPath)
 				else if (string_to_double(vectorLine[1]) < 0)
 					std::cout << "Error: not a positive number." << std::endl;
 				else
-					std::cout << vectorLine[0] << " => " << vectorLine[1] << " = " << string_to_double(vectorLine[1]) * p.second << std::endl;
+					std::cout << vectorLine[0] << " =>" << vectorLine[1] << " = " << string_to_double(vectorLine[1]) * p.second << std::endl;
 
 			}
 			catch (const std::exception &e)

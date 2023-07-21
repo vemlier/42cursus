@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chukim <chukim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: chukim <chukim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 09:32:48 by chukim            #+#    #+#             */
-/*   Updated: 2023/07/20 21:01:25 by chukim           ###   ########.fr       */
+/*   Updated: 2023/07/21 09:13:15 by chukim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main(int argc , char *argv[])
 	(void)argv;
 	if (argc != 2)
 	{
-		std::cout << "Arguments error" << std::endl;
+		std::cout << "Error: could not open file." << std::endl;
 		return (1);
 	}
 	Btc btc;

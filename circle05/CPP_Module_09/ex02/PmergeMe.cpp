@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chukim <chukim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: chukim <chukim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 10:02:14 by chukim            #+#    #+#             */
-/*   Updated: 2023/07/20 21:00:12 by chukim           ###   ########.fr       */
+/*   Updated: 2023/07/21 06:55:45 by chukim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,8 @@ PmergeMe::PmergeMe(int ac, char* av[])
 	clock_t end2 = clock();
 	double time2 = static_cast<double>(end2 - start2) / CLOCKS_PER_SEC * 1000;
 
-	std::cout << "After[Deque]: ";
+	std::cout << "After: ";
 	display_deque(_dequeSorted);
-	std::cout << "After[List]: ";
-	display_list(_listSorted);
 	std::cout << "Time to process a range of " << _dequeSorted.size() << " elements with std::deque : " << time1 << " us" << std::endl;
 	std::cout << "Time to process a range of " << _listSorted.size() << " elements with std::list : " << time2 << " us" << std::endl;
 }

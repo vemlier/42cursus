@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chukim <chukim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: chukim <chukim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 09:30:30 by chukim            #+#    #+#             */
-/*   Updated: 2023/07/20 19:59:07 by chukim           ###   ########.fr       */
+/*   Updated: 2023/07/21 09:52:06 by chukim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BITCOINEXCHANGE_HPP
 # define BITCOINEXCHANGE_HPP
 
-# include <string>
+# include <iostream>
 # include <map>
 # include <vector>
 
