@@ -6,7 +6,7 @@
 /*   By: chukim <chukim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 09:32:40 by chukim            #+#    #+#             */
-/*   Updated: 2023/07/22 06:43:47 by chukim           ###   ########.fr       */
+/*   Updated: 2023/07/22 10:42:46 by chukim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,16 @@ static double string_to_double(const std::string& str)
 	std::stringstream ss(str);
 	ss >> result;
 	return result;
+}
+
+static bool isValidDate(const std::tm& date)
+{
+	std::tm normalizedDate = date;
+	std::mktime(&normalizedDate);
+
+	return (date.tm_mday == normalizedDate.tm_mday &&
+			date.tm_mon == normalizedDate.tm_mon &&
+			date.tm_year == normalizedDate.tm_year);
 }
 
 Btc::Btc()
@@ -142,6 +152,7 @@ void Btc::readInput(std::string inputPath)
 	if (!file2.is_open())
 	{
 		_readFlag = -1;
+		std::cout << "Error: could not open file." << std::endl;
 		return;
 	}
 	std::string line;
@@ -160,6 +171,11 @@ void Btc::readInput(std::string inputPath)
 			std::cout << "Error: bad input => " << vectorLine[0] << std::endl;
 			continue;
 		}
+		if (!isValidDate(dateStruct))
+		{
+			std::cout << "Error: bad input => " << vectorLine[0] << std::endl;
+			continue;
+		} 
 		if (vectorLine[1].length() == 0 || vectorLine.size() < 2)
 		{
 			std::cout << "Error: bad input => " << vectorLine[0] << std::endl;
@@ -173,6 +189,27 @@ void Btc::readInput(std::string inputPath)
 				p = *(it);
 			else
 				p = *(--it);
+			try
+			{
+				if (string_to_double(vectorLine[1]) > 1000)
+					std::cout << "Error: too large a number." << std::endl;
+				else if (string_to_double(vectorLine[1]) < 0)
+					std::cout << "Error: not a positive number." << std::endl;
+				else
+					std::cout << vectorLine[0] << " =>" << vectorLine[1] << " = " << string_to_double(vectorLine[1]) * p.second << std::endl;
+
+			}
+			catch (const std::exception &e)
+			{
+				(void)e;
+				std::cout << "Error : Input Not A Number" << std::endl;
+				continue;
+			}
+		}
+		else if (_data.size() != 0)
+		{
+			it = _data.end();
+			std::pair<std::string, float> p = *(--it);
 			try
 			{
 				if (string_to_double(vectorLine[1]) > 1000)
