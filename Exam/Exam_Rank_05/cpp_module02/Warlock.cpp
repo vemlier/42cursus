@@ -1,40 +1,48 @@
 #include "Warlock.hpp"
 
-Warlock::Warlock(std::string const &name, std::string const &title)
+Warlock::Warlock(const std::string &name, const std::string &title) : name(name), title(title)
 {
-    this->name = name;
-    this->title = title;
-    std::cout << this->name << ": This looks like another boring day.\n";
+	std::cout << name << ": This looks like another boring day." << std::endl;
 }
-
 Warlock::~Warlock()
 {
-    std::cout << this->name << ": My job here is done!\n";
+	std::cout << name << ": My job here is done!" << std::endl;
 }
 
-std::string const &Warlock::getName() const { return (this->name);}
-std::string const &Warlock::getTitle() const { return (this->title);}
-
-void Warlock::setTitle(std::string const &title) { this->title = title;}
-
-void Warlock::introduce() const { std::cout << this->name << ": I am " << this->name << ", " << this->title << "!\n";}
-
-void Warlock::learnSpell(ASpell *aspell_ptr)
+const std::string &Warlock::getName() const
 {
-    book.learnSpell(aspell_ptr);
+	return (name);
+}
+const std::string &Warlock::getTitle() const
+{
+	return (title);
+}
+
+void Warlock::setTitle(const std::string &title)
+{
+	this->title = title;
+}
+
+void Warlock::introduce() const
+{
+	std::cout << name << ": I am " << name << ", " << title << "!" << std::endl;
+}
+void Warlock::learnSpell(ASpell *spell)
+{
+	book.learnSpell(spell);
 }
 
 void Warlock::forgetSpell(std::string name)
 {
-    book.forgetSpell(name);
+	book.forgetSpell(name);
 }
 
-void Warlock::launchSpell(std::string name, ATarget const &atarget_ref)
+void Warlock::launchSpell(std::string name, const ATarget &ref)
 {
-    ATarget const *test = 0;
-    if (test == &atarget_ref)
-        return;
-    ASpell *temp = book.createSpell(name);
-    if (temp)
-        temp->launch(atarget_ref);
+	const ATarget *test = 0;
+	if (test == &ref)
+		return;
+	ASpell *spell = book.createSpell(name);
+	if (spell)
+		spell->launch(ref);
 }

@@ -1,21 +1,22 @@
 #pragma once
 
 #include "ATarget.hpp"
+
 #include <map>
 
-class TargetGenerator
+class  TargetGenerator
 {
-    private:
-        std::map<std::string, ATarget *> arr_target;
+	private:
+		std::map<std::string, ATarget *> target_arr;
+		
+		 TargetGenerator(const  TargetGenerator & targetGenerator);
+		 TargetGenerator &operator=(const  TargetGenerator & targetGenerator);
 
-        TargetGenerator(TargetGenerator const &other);
-        TargetGenerator &operator=(TargetGenerator const &other);
+	public:
+		 TargetGenerator();
+		~TargetGenerator();
 
-    public:
-        TargetGenerator();
-        ~TargetGenerator();
-
-        void learnTargetType(ATarget *target_ptr);
-        void forgetTargetType(std::string const &name);
-        ATarget* createTarget(std::string const &name);
+		void learnTargetType(ATarget *target);
+		void forgetTargetType(std::string const &name);
+		ATarget *createTarget(std::string const &name);
 };

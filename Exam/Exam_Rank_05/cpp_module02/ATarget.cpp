@@ -2,21 +2,27 @@
 
 ATarget::ATarget() {}
 
-ATarget::ATarget(std::string const &type) { this->type = type;}
+ATarget::ATarget(const std::string &type) : type(type) {}
 
-ATarget::ATarget(ATarget const &other) { *this = other;}
-
-ATarget &ATarget::operator=(ATarget const &other)
+ATarget::ATarget(const ATarget &ref)
 {
-    this->type = other.type;
-    return (*this);
+	*this = ref;
+}
+
+ATarget &ATarget::operator=(const ATarget &ref)
+{
+	this->type = ref.type;
+	return (*this);
 }
 
 ATarget::~ATarget() {}
 
-std::string const &ATarget::getType() const { return (this->type);}
-
-void ATarget::getHitBySpell(ASpell const &aspell_ref) const
+const std::string &ATarget::getType() const
 {
-    std::cout << this->type << " has been " << aspell_ref.getEffects() << "!\n";
+	return (type);
+}
+
+void ATarget::getHitBySpell(const ASpell &ref) const
+{
+	std::cout << type << " has been " << ref.getEffects() << "!" << std::endl;
 }
