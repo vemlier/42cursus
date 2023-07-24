@@ -1,14 +1,16 @@
-#ifndef ATARGET_HPP
-# define ATARGET_HPP
+#pragma once
 
-# include <iostream>
+#include "ASpell.hpp"
+
+#include <iostream>
 
 class ASpell;
 
 class ATarget
 {
-	private:
+	protected:
 		std::string type;
+	
 	public:
 		ATarget();
 		ATarget(const std::string &type);
@@ -22,5 +24,3 @@ class ATarget
 
 		virtual ATarget *clone() const = 0;
 };
-
-#endif

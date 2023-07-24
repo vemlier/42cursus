@@ -1,7 +1,8 @@
 #pragma once
 
-#include <iostream>
 #include "ASpell.hpp"
+
+#include <iostream>
 
 class ASpell;
 
@@ -22,5 +23,4 @@ class ATarget
 		void getHitBySpell(const ASpell &ref) const;
 
 		virtual ATarget *clone() const = 0;
-
 };

@@ -9,4 +9,5 @@ class Fireball : public ASpell
 		~Fireball();
 
 		virtual ASpell *clone() const;
+
 };

@@ -11,8 +11,8 @@ ASpell::ASpell(const ASpell &ref)
 
 ASpell &ASpell::operator=(const ASpell &ref)
 {
-	this->name = ref.name;
-	this->effects = ref.effects;
+	this->name = ref.getName();
+	this->effects = ref.getEffects();
 	return (*this);
 }
 

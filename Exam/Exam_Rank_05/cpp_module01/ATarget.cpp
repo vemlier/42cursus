@@ -1,13 +1,8 @@
 #include "ATarget.hpp"
-#include "ASpell.hpp"
 
-ATarget::ATarget()
-{
-}
+ATarget::ATarget() {}
 
-ATarget::ATarget(const std::string &type) : type(type)
-{
-}
+ATarget::ATarget(const std::string &type) : type(type) {}
 
 ATarget::ATarget(const ATarget &ref)
 {
@@ -16,20 +11,18 @@ ATarget::ATarget(const ATarget &ref)
 
 ATarget &ATarget::operator=(const ATarget &ref)
 {
-	this->type = ref.type;
+	this->type = ref.getType();
 	return (*this);
 }
 
-ATarget::~ATarget()
-{
-}
+ATarget::~ATarget() {}
 
 const std::string &ATarget::getType() const
 {
-	return (this->type);
+	return (type);
 }
 
 void ATarget::getHitBySpell(const ASpell &ref) const
 {
-	std::cout << type << " has been " << ref.getEffects() << "!" << std::endl;
+	std::cout << type <<" has been " << ref.getEffects() << "!" << std::endl;
 }

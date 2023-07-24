@@ -4,6 +4,7 @@ Warlock::Warlock(const std::string &name, const std::string &title) : name(name)
 {
 	std::cout << name << ": This looks like another boring day." << std::endl;
 }
+
 Warlock::~Warlock()
 {
 	std::cout << name << ": My job here is done!" << std::endl;
@@ -13,6 +14,7 @@ const std::string &Warlock::getName() const
 {
 	return (name);
 }
+
 const std::string &Warlock::getTitle() const
 {
 	return (title);
@@ -27,11 +29,13 @@ void Warlock::introduce() const
 {
 	std::cout << name << ": I am " << name << ", " << title << "!" << std::endl;
 }
-void Warlock::learnSpell(ASpell *spell)
+
+void Warlock::learnSpell(ASpell *ptr)
 {
-	if (spell)
-		arr.insert(std::pair<std::string, ASpell *>(spell->getName(), spell->clone()));
+	if (ptr)
+		arr.insert(std::make_pair(ptr->getName(), ptr->clone()));
 }
+
 void Warlock::forgetSpell(std::string name)
 {
 	std::map<std::string, ASpell *>::iterator it = arr.find(name);
@@ -39,6 +43,7 @@ void Warlock::forgetSpell(std::string name)
 		delete it->second;
 	arr.erase(name);
 }
+
 void Warlock::launchSpell(std::string name, const ATarget &ref)
 {
 	ASpell *spell = arr[name];

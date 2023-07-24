@@ -13,14 +13,14 @@ class Warlock
 		std::string name;
 		std::string title;
 
-		std::map<std::string , ASpell *> arr;
-
 		Warlock();
 		Warlock(const Warlock &ref);
 		Warlock &operator=(const Warlock &ref);
 
+		std::map<std::string, ASpell *> arr;
+
 		SpellBook book;
-	
+
 	public:
 		Warlock(const std::string &name, const std::string &title);
 		~Warlock();
@@ -30,9 +30,9 @@ class Warlock
 
 		void setTitle(const std::string &title);
 
-		void introduce() const;
-
-		void learnSpell(ASpell *spell);
+		void introduce() const ;
+		
+		void learnSpell(ASpell *ptr);
 		void forgetSpell(std::string name);
 		void launchSpell(std::string name, const ATarget &ref);
 };

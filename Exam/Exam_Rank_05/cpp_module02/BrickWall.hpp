@@ -9,4 +9,5 @@ class BrickWall : public ATarget
 		~BrickWall();
 
 		virtual ATarget *clone() const;
+
 };

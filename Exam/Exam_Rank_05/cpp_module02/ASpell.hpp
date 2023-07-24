@@ -1,7 +1,8 @@
 #pragma once
 
-#include <iostream>
 #include "ATarget.hpp"
+
+#include <iostream>
 
 class ATarget;
 
@@ -24,5 +25,4 @@ class ASpell
 		void launch(const ATarget &ref) const;
 
 		virtual ASpell *clone() const = 0;
-
 };
