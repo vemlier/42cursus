@@ -1,0 +1,23 @@
+<canvas id="myCanvas" style="background-color: #009BD7" width="400" height="400"></canvas>
+
+<script>
+	const el=document.getElementById("myCanvas");
+	const ctx=el.getContext("2d");
+
+	ctx.beginPath();
+	const x1=200, y1=300, r1=50;
+	ctx.arc(x1,y1,r1,0,Math.PI*2);
+	ctx.fillStyle="white";
+	ctx.fill();
+
+	ctx.beginPath();
+	const r2=r1*0.8, x2=x1, y2=y1-r1-r2;
+	ctx.arc(x2,y2,r2,0,Math.PI*2);
+	ctx.fill();
+
+	ctx.beginPath();
+	const r3=r2*0.8, x3=x2, y3=y2-r2-r3;
+	ctx.arc(x3,y3,r3,0,Math.PI*2);
+	ctx.fill();
+
+</script>
