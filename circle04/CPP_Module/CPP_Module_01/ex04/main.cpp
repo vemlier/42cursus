@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 		return (-1);
 	}
 	std::string	file_name = (std::string)argv[1] + ".replace";
-	std::ofstream	ofs(file_name);
+	std::ofstream	ofs(file_name.c_str());
 	if (!ofs.is_open())
 	{
 		std::cout << "Coulnd't open the output file" << std::endl; 

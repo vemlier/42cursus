@@ -39,7 +39,7 @@ FragTrap & FragTrap::operator=(FragTrap const & rhs)
 
 void FragTrap::highFivesGuys(void)
 {
-	if (this->_hitpoints >= 0 && this->_energy_points >= 0)
+	if (this->_hitpoints > 0 && this->_energy_points > 0)
 		std::cout << "High Five to " << this->_name << "!\n";
 }
 

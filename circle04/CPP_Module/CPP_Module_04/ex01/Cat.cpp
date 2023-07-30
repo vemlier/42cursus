@@ -26,7 +26,7 @@ Cat::~Cat()
 	std::cout << "A cat was destroyed and his brain deleted\n";
 }
 
-Cat::Cat(const Cat & ref)
+Cat::Cat(const Cat & ref) : Animal()
 {
 	this->type = ref.getType();
 	this->brain = new Brain(*(ref.getBrain()));

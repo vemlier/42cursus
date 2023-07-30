@@ -10,7 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.hpp"
+#include "Contact.hpp"
+#include "Phonebook.hpp"
+
+#include <iostream>
+#include <cstdlib>
+#include <string>
+#include <iomanip>
 
 void	ft_add(Phonebook *phonebook, int i)
 {

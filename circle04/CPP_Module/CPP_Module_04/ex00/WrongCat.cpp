@@ -23,9 +23,9 @@ WrongCat::~WrongCat()
 	std::cout << "A wrong cat was destroyed\n";
 }
 
-WrongCat::WrongCat(const WrongCat & ref)
+WrongCat::WrongCat(const WrongCat & ref) : WrongAnimal()
 {
-	this->type = ref.getType();
+	*this = ref;
 	std::cout << "A cat was constructed from copy\n";
 }
 

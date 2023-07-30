@@ -14,6 +14,8 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
 
+#include <cstdlib>
+
 int main( void )
 {
 	std::cout << "Constructor" << std::endl;
@@ -32,7 +34,7 @@ int main( void )
 
 	std::cout << "Array" << std::endl;
 	std::cout << "--------------------" << std::endl;
-	const AAnimal	*(animal_array[4]);
+	const AAnimal	*animal_array[4];
 
 	for (int i = 0; i < 2; i++)
 		animal_array[i] = new Dog();
