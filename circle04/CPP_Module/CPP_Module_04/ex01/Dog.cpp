@@ -26,7 +26,7 @@ Dog::~Dog()
 	std::cout << "A dog was destroyed and his brain deleted\n";
 }
 
-Dog::Dog(const Dog & ref)
+Dog::Dog(const Dog & ref) : Animal()
 {
 	std::cout << "Creating a copy dog brain\n";
 	this->brain = new Brain(*(ref.getBrain()));

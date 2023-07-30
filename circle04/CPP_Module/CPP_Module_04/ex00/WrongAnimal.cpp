@@ -25,7 +25,7 @@ WrongAnimal::~WrongAnimal()
 
 WrongAnimal::WrongAnimal(const WrongAnimal & ref)
 {
-	this->type = ref.type;
+	*this = ref;
 	std::cout << "Wrong Animal was constructed from a copy\n";
 }
 

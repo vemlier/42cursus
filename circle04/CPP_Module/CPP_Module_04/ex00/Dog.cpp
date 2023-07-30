@@ -23,9 +23,9 @@ Dog::~Dog()
 	std::cout << "A dog was destroyed\n";
 }
 
-Dog::Dog(const Dog & ref)
+Dog::Dog(const Dog & ref) : Animal()
 {
-	this->type = ref.getType();
+	*this = ref;
 	std::cout << "A dog was constructed as a copy\n";
 }
 

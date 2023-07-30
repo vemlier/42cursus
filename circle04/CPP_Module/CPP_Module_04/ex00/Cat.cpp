@@ -23,9 +23,9 @@ Cat::~Cat()
 	std::cout << "A cat was destroyed\n";
 }
 
-Cat::Cat(const Cat & ref)
+Cat::Cat(const Cat & ref) : Animal()
 {
-	this->type = ref.getType();
+	*this = ref;
 	std::cout << "A cat was constructed as a copy\n";
 }
 

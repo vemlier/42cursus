@@ -13,7 +13,7 @@
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
 
-# include "main.hpp"
+# include <iostream>
 
 class Contact
 {

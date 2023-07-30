@@ -13,7 +13,9 @@
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
-#include "main.hpp"
+#include "Contact.hpp"
+
+#include <iostream>
 
 class Phonebook
 {

@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.hpp"
+#include "Contact.hpp"
+
+#include <iomanip>
 
 Contact::Contact()
 {

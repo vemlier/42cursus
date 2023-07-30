@@ -89,7 +89,7 @@ void ScavTrap::guardGate( void )
 	std::string		class_name = this->_class_name;
 	std::string		name = this->_name;
 
-	if(this->_energy_points >= 0 && this->_hitpoints)
+	if(this->_hitpoints)
 	{
 		std::cout << class_name << " " << name << " has entered the Gate Keeper mode\n";
 		this->set_energy_points(this->_class_energy_points);
