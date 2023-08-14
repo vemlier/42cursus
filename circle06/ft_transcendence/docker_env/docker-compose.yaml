@@ -1,0 +1,11 @@
+version: '3'
+services:
+  development:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: my-development-image
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./app:/app
