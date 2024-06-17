@@ -43,8 +43,6 @@ int	num_itoa(t_info *info, char *num_box, unsigned long long num)
 		{
 			num_box[len++] = (DIGITS[num % info->num_base]) | info->locass;
 			num = num / info->num_base;
-			if (num < 0 && info->address == ENABLE)
-				num *= -1;
 		}
 	}
 	return (len);

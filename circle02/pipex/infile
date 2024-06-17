@@ -1,0 +1,7 @@
+1234
+
+Hello world
+
+test : ./pipex infile "grep Hello" "cat" outfile 
+
+same as : grep Hello infile | cat >> outfile

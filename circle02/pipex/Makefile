@@ -19,7 +19,7 @@ CFLAGS	= -Wall -Wextra -Werror
 AR		= ar rcs
 RM		= rm -f
 
-SRCS	= pipex.c \
+SRCS	= main.c \
 		print_error.c \
 
 OBJS	= $(SRCS:.c=.o)
@@ -31,7 +31,9 @@ $(NAME) : $(OBJS)
 	make -C $(PRINTFDIR)
 	cp $(PRINTFDIR)/$(PRINTFFILE) $(NAME)
 	$(AR) $@ $?
-	gcc -o $(NAME) $(NAME)
+	$(CC) -o $(NAME)_exec $(NAME)
+	$(RM) $(NAME)
+	mv $(NAME)_exec $(NAME)
 
 all : $(NAME)
 
