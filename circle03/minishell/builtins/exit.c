@@ -38,15 +38,12 @@ int	ft_isoverflow_str(char *str)
 {
 	unsigned long long	res;
 	int					i;
-	int					sign;
 	char				*tmp;
 
 	res = 0;
 	i = 0;
-	sign = 1;
+
 	tmp = ft_strtrim(str, "\f\r \t\v");
-	if (str[i] == '-')
-		sign = -1;
 	if (str[i] == '+' || str[i] == '-')
 		i++;
 	while (str[i] && (str[i] >= '0' && str[i] <= '9'))

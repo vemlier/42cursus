@@ -40,7 +40,7 @@ all : $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@ -I. -I./minilibx
 
 $(NAME) : $(OBJS)
-	make all -C $(LIBFT)/
+	make -C $(LIBFT)/
 	make -C ./minilibx
 	$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
 

@@ -16,10 +16,8 @@ void	unlink_all(t_cmd *cmd)
 {
 	int		i;
 	int		j;
-	size_t	tmp_file_cnt;
 
 	i = 0;
-	tmp_file_cnt = 0;
 	while (cmd[i].token)
 	{
 		j = 0;

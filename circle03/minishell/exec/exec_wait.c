@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <sys/wait.h>
 
 void	wait_last_process(pid_t pid, int *flag)
 {

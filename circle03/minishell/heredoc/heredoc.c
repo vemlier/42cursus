@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <sys/wait.h>
 
 void	heredoc_one(t_token *delimiter_token, size_t tmp_file_cnt)
 {
