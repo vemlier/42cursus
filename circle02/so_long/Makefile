@@ -15,32 +15,45 @@ LIBFT		= libft
 LIBFT_LIB	= libft.a
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
-RM = rm -f
-AR = ar
-ARFLAGS = rcs
+RM			= rm -f
+AR			= ar
+ARFLAGS		= rcs
 SRCS		= ./srcs/so_long.c ./srcs/image.c ./srcs/key.c \
-				./srcs/map.c ./srcs/so_long_utils.c \
-				./srcs/get_next_line.c ./srcs/get_next_line_utils.c
-OBJS = $(SRCS:.c=.o)
-LIBC = ar rc
+			  ./srcs/map.c ./srcs/so_long_utils.c \
+			  ./srcs/get_next_line.c ./srcs/get_next_line_utils.c
+OBJS		= $(SRCS:.c=.o)
+LIBC		= ar rc
+
+UNAME_S := $(shell uname -s)
+
+# Compiler and linker options for macOS
+ifeq ($(UNAME_S), Darwin)
+	LDFLAGS = -Llibft -lft -L./minilibx -lmlx -framework OpenGL -framework AppKit
+# Compiler and linker options for Linux
+else
+	LDFLAGS = -Llibft -lft -L./minilibx -lmlx -L/usr/lib/X11 -lX11 -lXext -L/usr/lib -lGL
+endif
 
 all : $(NAME)
 
-%.o : %.c 
-	$(CC) $(CFLAGS) -c $< -o $@ -I.
+%.o : %.c
+	$(CC) $(CFLAGS) -c $< -o $@ -I. -I./minilibx
 
 $(NAME) : $(OBJS)
 	make all -C $(LIBFT)/
-	cc -o $(NAME) $(OBJS) -Llibft -lft -L./minilibx -lmlx -framework OpenGL -framework AppKit
+	make -C ./minilibx
+	$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
 
 clean :
 	$(RM) $(OBJS)
 	make clean -C $(LIBFT)
+	make clean -C ./minilibx
 
 fclean : clean
 	$(RM) $(NAME)
 	$(RM) $(LIBFT_LIB)
 	make fclean -C $(LIBFT)
+	make clean -C ./minilibx
 
 re : fclean all
 

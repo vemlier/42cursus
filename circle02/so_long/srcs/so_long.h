@@ -23,11 +23,11 @@
 # define X_EVENT_KEY_RELEASE	3
 # define X_EVENT_KEY_EXIT		17
 
-# define KEY_W				13
-# define KEY_A				0
-# define KEY_S				1
-# define KEY_D				2
-# define KEY_ESC			53
+# define KEY_W				119//mac 13
+# define KEY_A				97//mac 0
+# define KEY_S				115//mac 1
+# define KEY_D				100//mac 2
+# define KEY_ESC			65307//mac 53
 
 typedef struct s_img {
 	void	*chara;

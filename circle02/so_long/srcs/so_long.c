@@ -39,7 +39,7 @@ int	exit_game(t_game *game)
 int	press_key(int key_code, t_game *game)
 {
 	if (key_code == KEY_ESC)
-		exit_game(game);
+        exit_game(game);
 	if (key_code == KEY_W)
 		move_w(game);
 	if (key_code == KEY_A)
@@ -61,7 +61,8 @@ int	main(int argc, char *argv[])
 	if (game == NULL)
 		print_error("Pointer is NULL.\n");
 	game_init(game, argv[1]);
-	mlx_hook(game->win, X_EVENT_KEY_PRESS, 0, &press_key, game);
+	mlx_hook(game->win, X_EVENT_KEY_PRESS, 1L << 0, &press_key, game);
+    mlx_hook(game->win, X_EVENT_KEY_EXIT, 1L << 17, &exit_game, game);
 	mlx_loop(game->mlx);
 	return (0);
 }
