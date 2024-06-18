@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
 t_node	*get_new_node(int num)
 {

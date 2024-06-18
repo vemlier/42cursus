@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
 void	sorting_5(t_args *args)
 {

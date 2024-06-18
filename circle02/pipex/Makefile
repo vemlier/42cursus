@@ -13,38 +13,37 @@
 NAME		= pipex
 PRINTFDIR	= ./ft_printf
 PRINTFFILE	= libftprintf.a
-
-CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
-AR		= ar rcs
-RM		= rm -f
-
-SRCS	= main.c \
-		print_error.c \
-
+INCLUDES	= -Iincludes
+AR		= ar
+ARFLAGS	= rcs
+SRCS	= src/main.c \
+		src/print_error.c
 OBJS	= $(SRCS:.c=.o)
 
-.c.o:
-	$(CC) $(CFLAGS) -c $< -I.	
+all : $(NAME)
+
+%.o : %.c
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME) : $(OBJS)
 	make -C $(PRINTFDIR)
-	cp $(PRINTFDIR)/$(PRINTFFILE) $(NAME)
-	$(AR) $@ $?
+	cp $(PRINTFDIR)/$(PRINTFFILE) $@
+	$(AR) $(ARFLAGS) $@ $?
 	$(CC) -o $(NAME)_exec $(NAME)
 	$(RM) $(NAME)
 	mv $(NAME)_exec $(NAME)
 
-all : $(NAME)
-
 clean :
-	make -C $(PRINTFDIR) clean
-	$(RM) $(OBJS)
+	rm -f $(OBJS)
+	make clean -C $(PRINTFDIR)
 
 fclean : clean
-	make -C $(PRINTFDIR) fclean
-	$(RM) $(NAME)
+	rm  -f $(NAME)
+	make fclean -C $(PRINTFDIR)
 
-re : fclean all
+re :
+	make fclean
+	make all
 
 .PHONY	:	all clean fclean re

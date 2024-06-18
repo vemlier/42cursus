@@ -1,18 +1,20 @@
 #include "Server.hpp"
 
 #include <iostream>
+#include <cstring>
+#include <cstdlib>
 
 static bool isValidInput(char **argv)
 {
 
-  for (size_t i = 0; i < std::strlen(argv[1]); i++)
+  for (size_t i = 0; i < strlen(argv[1]); i++)
   {
     if (!std::isdigit(argv[1][i]))
     {
       return false;
     }
   }
-  if (std::strlen(argv[1]) > 5 || std::atoi(argv[1]) > 65535)
+  if (strlen(argv[1]) > 5 || atoi(argv[1]) > 65535)
   {
     return false;
   }

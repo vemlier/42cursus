@@ -1,3 +1,5 @@
+#include <cstring>
+
 #include "Command.hpp"
 #include "Channel.hpp"
 #include "NumericReplies.hpp"
@@ -82,13 +84,13 @@ bool NickCommand::isNoNickname(const std::string& nick) const {
 }
 
 bool NickCommand::isErroneus(const char* nick) const {
-  if (std::strlen(nick) > 9) {
+  if (strlen(nick) > 9) {
     return true;
   }
   if (!(std::isalpha(nick[0]) || isSpecial(nick[0]))) {
     return true;
   }
-  for (unsigned long i = 1; i < std::strlen(nick); i++) {
+  for (unsigned long i = 1; i < strlen(nick); i++) {
     if (!(std::isalpha(nick[i]) || isSpecial(nick[i])
     || std::isdigit(nick[i]) || (nick[i] == '-'))) {
       return true;

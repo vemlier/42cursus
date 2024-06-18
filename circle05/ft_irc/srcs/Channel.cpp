@@ -2,6 +2,8 @@
 #include "Channel.hpp"
 #include "Client.hpp"
 
+#include <algorithm>
+
 Channel::Channel(const std::string &name, const std::string &password, Client *admin) : _name(name), _password(password), _admin(admin)
 {
 }

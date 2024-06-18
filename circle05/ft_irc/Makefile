@@ -1,55 +1,36 @@
-CXX           :=  c++
-CXXFLAGS      :=  -Wall -Werror -Wextra -std=c++98
-LDFLAGS       :=  
-RM            :=  rm -f
-
-NAME          :=  ircserv
-
-COMMANDS_DIR  :=  commands
-COMMANDS_SRCS :=  CommandHandler.cpp \
-                  JoinCommand.cpp PartCommand.cpp \
-                  PrivMsgCommand.cpp NoticeCommand.cpp \
-                  PingCommand.cpp PongCommand.cpp \
-                  NickCommand.cpp UserCommand.cpp \
-                  ModeCommand.cpp PassCommand.cpp \
-                  KickCommand.cpp QuitCommand.cpp
-
-COMMANDS_SRCS :=  $(addprefix $(COMMANDS_DIR)/, $(COMMANDS_SRCS))
-
-SRCS_DIR      :=  srcs
-SRCS          :=  main.cpp Server.cpp Client.cpp Channel.cpp \
-                  $(COMMANDS_SRCS)
-SRCS          :=  $(addprefix $(SRCS_DIR)/, $(SRCS))
+CXXFLAGS	:=  -Wall -Werror -Wextra -std=c++98
+NAME	:=  ircserv
+INCLUDES	= -Iincludes -I/usr/include/kqueue
+LIBS	:=  -lkqueue
+SRCS	:=	./srcs/commands/CommandHandler.cpp ./srcs/commands/JoinCommand.cpp ./srcs/commands/PartCommand.cpp\
+		./srcs/commands/PrivMsgCommand.cpp ./srcs/commands/NoticeCommand.cpp ./srcs/commands/PingCommand.cpp\
+		./srcs/commands/PongCommand.cpp ./srcs/commands/NickCommand.cpp ./srcs/commands/UserCommand.cpp\
+		./srcs/commands/ModeCommand.cpp ./srcs/commands/PassCommand.cpp ./srcs/commands/KickCommand.cpp\
+		./srcs/commands/QuitCommand.cpp ./srcs/main.cpp ./srcs/Server.cpp ./srcs/Client.cpp ./srcs/Channel.cpp
 OBJS          :=  $(SRCS:.cpp=.o)
-
-INCS_DIR      :=  includes
 BOT_DIR       :=  bot
 
-.PHONY        :  all
-all           :  $(NAME)
-	make -j -C $(BOT_DIR) all
+all : $(NAME)
 
-$(NAME)       :  $(OBJS)
-	$(CXX) $(LDFLAGS) $^ -o $@
+$(NAME) : $(OBJS)
+	$(CXX) $(OBJS) -o $(NAME) $(LIBS)
 
-%.o           :  %.cpp
-	$(CXX) $(CXXFLAGS) -I$(INCS_DIR) -c $< -o $@
+%.o : %.cpp
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
-.PHONY        :  bot
-bot           :
-	make -j -C $(BOT_DIR) all
+bot :
+	make -C $(BOT_DIR) all
 
-.PHONY        :  clean
-clean         :
-	$(RM) $(OBJS)
+clean :
+	rm -f $(OBJS)
 	make -C $(BOT_DIR) clean
 
-.PHONY        :  fclean
-fclean        :  clean
-	$(RM) $(NAME)
+fclean :  clean
+	rm -f $(NAME)
 	make -C $(BOT_DIR) fclean
 
-.PHONY        :  re
-re            :
+re :
 	make fclean
-	make -j all
+	make all
+
+.PHONY : all bot clena fclean re

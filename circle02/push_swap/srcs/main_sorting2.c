@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
 void	b_to_a(t_args *args, int len)
 {

@@ -16,7 +16,8 @@ LIBFTFILE	= libft.a
 CFLAGS		= -Wall -Wextra -Werror
 AR			= ar
 ARFLAGS		= rcs
-SRCS		= ./srcs/ft_printf.c \
+INCLUDES	= -Iincludes
+SRCS		= ./srcs/main.c \
 				./srcs/ft_printf_parse.c \
 				./srcs/ft_printf_char.c \
 				./srcs/ft_printf_string.c \
@@ -27,7 +28,7 @@ OBJS		= $(SRCS:.c=.o)
 all: $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(OBJS)
 	make -C $(LIBFTDIR)

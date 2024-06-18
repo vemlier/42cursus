@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
 int	is_exist(int num, t_stack *stack)
 {

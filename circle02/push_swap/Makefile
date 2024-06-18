@@ -16,7 +16,7 @@ PRINTFDIR	= ./ft_printf
 PRINTFFILE	= libftprintf.a
 CFLAGS		= -Wall -Wextra -Werror
 ARFLAGS		= rcs
-INCLUDES	= ./includes/push_swap.h
+INCLUDES	= -Iincludes
 SRCS		= ./srcs/main.c ./srcs/parser.c ./srcs/stack_making.c ./srcs/stack_printing.c \
 			./srcs/stack_basic.c ./srcs/stack_push_swap1.c ./srcs/stack_push_swap2.c ./srcs/stack_arr.c \
 			./srcs/error.c ./srcs/sorting_a.c ./srcs/sorting_b.c ./srcs/quick_sorting.c \
@@ -26,7 +26,7 @@ OBJS		= $(SRCS:.c=.o)
 all: $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(OBJS)
 		make -C $(PRINTFDIR)

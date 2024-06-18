@@ -15,6 +15,7 @@ LIBFT		= libft
 LIBFT_LIB	= libft.a
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
+INCLUDES	= -Iincludes -I. -I./minilibx
 RM			= rm -f
 AR			= ar
 ARFLAGS		= rcs
@@ -37,7 +38,7 @@ endif
 all : $(NAME)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -c $< -o $@ -I. -I./minilibx
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME) : $(OBJS)
 	make -C $(LIBFT)/

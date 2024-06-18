@@ -1,6 +1,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <time.h>
+#include <cstring>
 
 #include "Command.hpp"
 #include "Client.hpp"

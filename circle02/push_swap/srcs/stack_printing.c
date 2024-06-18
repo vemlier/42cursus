@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 #include "../ft_printf/includes/ft_printf.h"
 
 void	print_stack(t_stack *stack)

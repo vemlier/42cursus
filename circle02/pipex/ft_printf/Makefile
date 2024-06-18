@@ -3,49 +3,48 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: chukim <chukim@student.42.fr>              +#+  +:+       +#+         #
+#    By: chukim <chukim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 11:18:20 by chukim            #+#    #+#              #
-#    Updated: 2022/04/18 13:23:28 by chukim           ###   ########.fr        #
+#    Updated: 2022/12/02 02:56:12 by chukim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= libftprintf.a
 LIBFTDIR	= ./libft
 LIBFTFILE	= libft.a
+CFLAGS		= -Wall -Wextra -Werror
+AR			= ar
+ARFLAGS		= rcs
+INCLUDES	= -Iincludes
+SRCS		= ./srcs/main.c \
+				./srcs/ft_printf_parse.c \
+				./srcs/ft_printf_char.c \
+				./srcs/ft_printf_string.c \
+				./srcs/ft_printf_num.c \
+				./srcs/ft_printf_num_utils.c
+OBJS		= $(SRCS:.c=.o)
 
-CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror
-AR		= ar rcs
-RM		= rm -f
+all: $(NAME)
 
-SRCS	= ft_printf.c \
-			ft_printf_parse.c \
-			ft_printf_char.c \
-			ft_printf_string.c \
-			ft_printf_num.c \
-			ft_printf_num_utils.c \
+%.o: %.c
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-OBJS	= $(SRCS:.c=.o)
-
-.c.o:
-	$(CC) $(CFLAGS) -c $< -I.
-
-$(NAME) : $(OBJS)
+$(NAME): $(OBJS)
 	make -C $(LIBFTDIR)
-	cp $(LIBFTDIR)/$(LIBFTFILE) $(NAME)
-	$(AR) $@ $?
+	cp $(LIBFTDIR)/$(LIBFTFILE) $@
+	$(AR) $(ARFLAGS) $@ $?
 
-all : $(NAME)
+clean:
+	rm -f $(OBJS)
+	make clean -C $(LIBFTDIR) 
 
-clean :
-	make -C $(LIBFTDIR) clean
-	$(RM) $(OBJS) $(BOBJS)
+fclean: clean
+	rm -f $(NAME)
+	make fclean -C $(LIBFTDIR)
+	
+re:
+	make fclean
+	make all
 
-fclean : clean
-	make -C $(LIBFTDIR) fclean
-	$(RM) $(NAME)
-
-re : clean all
-
-.PHONY : all clean fclean re bonus
+.PHONY: all clean fclean re

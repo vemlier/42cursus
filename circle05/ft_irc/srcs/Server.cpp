@@ -14,6 +14,9 @@
 #include <iostream>
 #include <map>
 #include <vector>
+#include <cerrno>
+#include <cstdlib>
+#include <algorithm>
 
 #define GRN "\e[0;32m"
 #define NC "\e[0m"
