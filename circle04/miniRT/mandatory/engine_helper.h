@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <math.h>
 # include "vector.h"
 # include "image.h"
 # include "color.h"

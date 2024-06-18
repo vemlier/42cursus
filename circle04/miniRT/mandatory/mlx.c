@@ -15,7 +15,7 @@
 #include "image.h"
 #include "scene.h"
 #include "engine.h"
-#include "mlx/mlx.h"
+#include "minilibx/mlx.h"
 
 int	color_to_int(t_color *pixel)
 {

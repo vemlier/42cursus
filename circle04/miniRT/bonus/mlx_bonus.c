@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "mlx/mlx.h"
+#include "minilibx/mlx.h"
 #include "image.h"
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)

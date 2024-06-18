@@ -186,10 +186,7 @@ int	main(void)
 	start2 = 0;
 	end2 = 0;
 	main_init(scene2, im2, ppm_pixels2);
-	// print_scene(scene2);
 	render(scene2, im2);
-	render(scene2, im2);
-	// scene2->camera->position->y -= 1;
 	open_mlx(im2, scene2);
 	end2 = (((double)clock()) / CLOCKS_PER_SEC);
 	printf("it takes time :%lf\n", (end2 - start2));
